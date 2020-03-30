@@ -12,11 +12,11 @@ namespace ApiTest
   {
     static void Main()
     {
-      var apiCallTask = ApiHelper.ApiCall("API KEY HERE");
+      var apiCallTask = ApiHelper.ApiCall("Ws7xotfERIVKDMORGlCVhlmsfcoy8xKB");
       var result = apiCallTask.Result;
 
       JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(result);
-      List<Article> articleList = JsonConvert.DeserializeObject<List<Article>>(jsonResponse["results"].ToString());
+      List<Article> articleList = JsonConvert.DeserializeObject<List<Article>>(jsonResponse["results"].ToString()); //DeserializeObject used to create list of articles. this method grabs JSON keys in the response that match properties in Article class. Properties names need to match JSON keys.
 
       foreach (Article article in articleList)
       {
@@ -24,7 +24,7 @@ namespace ApiTest
         Console.WriteLine($"Title: {article.Title}");
         Console.WriteLine($"Abstract: {article.Abstract}");
         Console.WriteLine($"Url: {article.Url}");
-        Console.WriteLine($"Buline: {article.Byline}");
+        Console.WriteLine($"Byline: {article.Byline}");
       }
     }
     //CODE BELOW WAS USED TO SHOW RESULT IN CONSOLE AS API RESULT
