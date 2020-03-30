@@ -1,16 +1,21 @@
 using System;
 using System.Threading.Tasks;
 using RestSharp;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq; //this is where JObject comes from. JObject is .NET object that can be treated as JSON
 
 namespace ApiTest
 {
   class Program
   {
-    static void Main()
+    static void Main(string[] args)
     {
       var apiCallTask = ApiHelper.ApiCall("Ws7xotfERIVKDMORGlCVhlmsfcoy8xKB");//this variable takes the returned Task from the async function in the ApiHelper class below. .We than call the ApiCall method and pass our api key in
+
+      //using code below we turn giant string stored as result into JSON data.
       var result = apiCallTask.Result;
-      Console.WriteLine(result);
+      JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(result); //this is where the conversion happens.
+      Console.WriteLine(jsonResponse["results"]);
     }
   }
 
